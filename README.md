@@ -250,11 +250,7 @@ Managed cloud hosting · Enterprise support · Compliance & security audits · H
 
 ## Contributing
 
-This is early-stage, and shaped by whoever shows up first.
-
-- Disagree with part of the spec? Open an issue.
-- Want to propose an addition? Open a discussion or a PR.
-- Want to build a reference SDK? Say so before you start, so effort doesn't collide.
+This is early-stage, and shaped by whoever shows up first. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose spec changes, contribute code, and the PR process.
 
 ## License
 
