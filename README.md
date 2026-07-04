@@ -10,6 +10,8 @@ _Specification v0.1 — Draft, open for community feedback_
 
 ---
 
+[agent-platform.tech](https://agent-platform.tech) introduce,
+
 For twenty years, software has been built around one assumption: a human is on the other end of the interface, clicking, tapping, scrolling. That assumption is breaking.
 
 People already tell their assistant _"order my usual coffee"_ instead of opening an app. A business that can only be understood by crawling its HTML effectively doesn't exist for that assistant — and, increasingly, doesn't exist for the customer standing behind it either.
