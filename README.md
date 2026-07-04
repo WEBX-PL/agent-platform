@@ -234,11 +234,13 @@ The project intends to ship, fully open source:
 
 ## Roadmap
 
-- [x] **v0.1** — Publish the specification (this document) for community feedback
-- [ ] **v0.2** — Core Server reference implementation + TypeScript SDK
-- [ ] **v0.3** — `create-agent-platform` CLI: OpenAPI auto-discovery, MCP/A2A auto-exposure
-- [ ] **v0.4** — Agent Simulator + conformance test suite
-- [ ] **v1.0** — Stable spec, multi-language SDKs, certification program
+- **v0.1** — Publish the specification (this document) for community feedback
+- **v0.2** — Core Server reference implementation + TypeScript SDK
+- **v0.3** — `create-agent-platform` CLI: OpenAPI auto-discovery, MCP/A2A auto-exposure
+- **v0.4** — Agent Simulator + conformance test suite
+- **v1.0** — Stable spec, multi-language SDKs, certification program
+
+See [ROADMAP.md](ROADMAP.md) for exit criteria per milestone, status tracking, and explicit non-goals.
 
 ## Business Model and Strategy
 
