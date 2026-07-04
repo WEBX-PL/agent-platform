@@ -2,7 +2,7 @@
 
 **The Open Standard for AI-Native Business Applications**
 
-*Specification v0.1 — Draft, open for community feedback*
+_Specification v0.1 — Draft, open for community feedback_
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![Status: Draft](https://img.shields.io/badge/status-draft-orange.svg)
@@ -12,7 +12,7 @@
 
 For twenty years, software has been built around one assumption: a human is on the other end of the interface, clicking, tapping, scrolling. That assumption is breaking.
 
-People already tell their assistant *"order my usual coffee"* instead of opening an app. A business that can only be understood by crawling its HTML effectively doesn't exist for that assistant — and, increasingly, doesn't exist for the customer standing behind it either.
+People already tell their assistant _"order my usual coffee"_ instead of opening an app. A business that can only be understood by crawling its HTML effectively doesn't exist for that assistant — and, increasingly, doesn't exist for the customer standing behind it either.
 
 **Agent Platform** is an open, vendor-neutral standard for exposing a business's products, policies, and workflows in a form AI agents can act on directly. It isn't another API to integrate. It's the AI-native front door of the business itself.
 
@@ -28,6 +28,7 @@ People already tell their assistant *"order my usual coffee"* instead of opening
 - [Example: A Coffee Shop, Agent-Native](#example-a-coffee-shop-agent-native)
 - [Agent Platform vs. Everything Else](#agent-platform-vs-everything-else)
 - [Why Not Just MCP?](#why-not-just-mcp)
+- [What About Apple and Google?](#what-about-apple-and-google)
 - [FAQ](#faq)
 - [Reference Implementation](#reference-implementation)
 - [Roadmap](#roadmap)
@@ -39,10 +40,10 @@ People already tell their assistant *"order my usual coffee"* instead of opening
 
 Every business today speaks a few dialects:
 
-| Interface | Built for |
-|---|---|
-| Website | Humans with a mouse |
-| Mobile app | Humans with a thumb |
+| Interface          | Built for                       |
+| ------------------ | ------------------------------- |
+| Website            | Humans with a mouse             |
+| Mobile app         | Humans with a thumb             |
 | REST / GraphQL API | Developers writing integrations |
 
 None of them were built for a fourth consumer that has shown up in the last two years: an autonomous AI agent, acting on a person's behalf.
@@ -65,7 +66,7 @@ api.company.com   → for developers
 agent.company.com → for AI agents
 ```
 
-This single endpoint becomes the authoritative channel between a business and any AI system acting on its behalf — covering catalog, pricing, policy, checkout, and tracking, all in a form built to be *reasoned about*, not *rendered*.
+This single endpoint becomes the authoritative channel between a business and any AI system acting on its behalf — covering catalog, pricing, policy, checkout, and tracking, all in a form built to be _reasoned about_, not _rendered_.
 
 This is deliberately not "another MCP." MCP standardizes how a model calls a tool. **Agent Platform standardizes how a business presents itself** — the knowledge, workflows, and commerce logic sitting behind those tools. Think of it less as an API spec and more as an **AI runtime for the business itself**.
 
@@ -116,13 +117,13 @@ Same business logic underneath. A completely different front door.
 
 ## Core Principles
 
-| Principle | What It Means |
-|---|---|
-| **Open** | Apache 2.0. No vendor lock-in, no proprietary extensions. |
-| **AI-First** | Designed for autonomous reasoning, not screens. |
-| **Human-Independent** | Fully functional with no UI in the loop. |
-| **Discoverable** | An agent finds what it can do without a human reading docs first. |
-| **Self-Describing** | Every deployment explains its own capabilities, live. |
+| Principle             | What It Means                                                     |
+| --------------------- | ----------------------------------------------------------------- |
+| **Open**              | Apache 2.0. No vendor lock-in, no proprietary extensions.         |
+| **AI-First**          | Designed for autonomous reasoning, not screens.                   |
+| **Human-Independent** | Fully functional with no UI in the loop.                          |
+| **Discoverable**      | An agent finds what it can do without a human reading docs first. |
+| **Self-Describing**   | Every deployment explains its own capabilities, live.             |
 
 ## The Agent Endpoint
 
@@ -155,12 +156,12 @@ An agent should never need to open a webpage to understand what a business can d
 
 This distinction is the core of the spec:
 
-| | Skills | Tools |
-|---|---|---|
-| Describe | **Intent** — what can be done | **Implementation** — how it's done |
-| Audience | The agent's planning layer | The agent's execution layer |
-| Examples | *Search Products, Place Order, Track Shipment, Request Refund, Book Appointment* | The function signatures, endpoints, or MCP calls behind each skill |
-| Changes when | The business's offering changes | The backend implementation changes |
+|              | Skills                                                                           | Tools                                                              |
+| ------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Describe     | **Intent** — what can be done                                                    | **Implementation** — how it's done                                 |
+| Audience     | The agent's planning layer                                                       | The agent's execution layer                                        |
+| Examples     | _Search Products, Place Order, Track Shipment, Request Refund, Book Appointment_ | The function signatures, endpoints, or MCP calls behind each skill |
+| Changes when | The business's offering changes                                                  | The backend implementation changes                                 |
 
 Separating the two means a business can rebuild its entire backend without breaking a single agent integration — as long as the skills stay the same.
 
@@ -177,7 +178,11 @@ Separating the two means a business can rebuild its entire backend without break
   "product_id": "123",
   "price": "€29",
   "promotion": "Buy two, get 5% off",
-  "recommended_add_ons": ["Paper filters", "Coffee grinder", "Reusable container"],
+  "recommended_add_ons": [
+    "Paper filters",
+    "Coffee grinder",
+    "Reusable container"
+  ],
   "estimated_delivery": "Tomorrow"
 }
 ```
@@ -190,14 +195,15 @@ No webpage opened. No form filled in. No screenshot taken.
 
 ## Agent Platform vs. Everything Else
 
-| Capability | REST API | GraphQL | MCP alone | Agent Platform |
-|---|:---:|:---:|:---:|:---:|
-| Machine-callable | ✅ | ✅ | ✅ | ✅ |
-| Self-describing to an agent | ⚠️ needs docs | ⚠️ schema only | ✅ tools only | ✅ business + tools |
-| Encodes policy & promotions | ❌ | ❌ | ❌ | ✅ |
-| Encodes commerce workflow | ❌ | ❌ | ❌ | ✅ |
-| Standardized discovery | ❌ | ⚠️ | ✅ | ✅ |
-| Protocol-agnostic (MCP, A2A, OpenAPI…) | — | — | ❌ | ✅ |
+| Capability                               |   REST API    |    GraphQL     |   MCP alone   |    App Intents     |    AppFunctions    |   Agent Platform    |
+| ---------------------------------------- | :-----------: | :------------: | :-----------: | :----------------: | :----------------: | :-----------------: |
+| Machine-callable                         |      ✅       |       ✅       |      ✅       |         ✅         |         ✅         |         ✅          |
+| Self-describing to an agent              | ⚠️ needs docs | ⚠️ schema only | ✅ tools only |         ✅         |         ✅         | ✅ business + tools |
+| Encodes policy & promotions              |      ❌       |       ❌       |      ❌       |         ❌         |         ❌         |         ✅          |
+| Encodes commerce workflow                |      ❌       |       ❌       |      ❌       | ⚠️ per-action only | ⚠️ per-action only |         ✅          |
+| Standardized discovery                   |      ❌       |       ⚠️       |      ✅       |   ✅ (OS-level)    |   ✅ (OS-level)    |         ✅          |
+| Protocol-agnostic (MCP, A2A, OpenAPI…)   |       —       |       —        |      ❌       |   ❌ Apple-only    |  ❌ Android-only   |         ✅          |
+| Reaches agents outside the installed app |      ✅       |       ✅       |      ✅       |         ❌         |         ❌         |         ✅          |
 
 ## Why Not Just MCP?
 
@@ -205,6 +211,18 @@ MCP standardizes **how a model calls a tool**.
 Agent Platform standardizes **how a business presents itself**, to any agent, over any protocol.
 
 They complement each other rather than compete: a single Agent Platform deployment can expose one or several MCP servers as part of its `tools` surface, alongside OpenAPI, A2A, or protocols that don't exist yet.
+
+## What About Apple and Google?
+
+Both major mobile platforms are already moving in this direction — just inside their own walls.
+
+**Apple — App Intents (Siri / Apple Intelligence).** Apple's [App Intents framework](https://developer.apple.com/documentation/appintents/adopting-app-intents-to-support-system-experiences) lets an iOS app declare its actions and data as typed intents and entities, so Siri, Spotlight, Shortcuts, and Apple Intelligence can discover and call them directly, without opening the app.
+
+**Android — AppFunctions (Gemini).** Google's equivalent is [AppFunctions](https://developer.android.com/ai/appfunctions), a platform framework (Android 16+) plus Jetpack library that lets an app register callable functions with an OS-level registry so agents and assistants — Gemini in particular — can discover and execute them. Google describes it as _the mobile equivalent of tools within MCP_.
+
+Neither replaces the need for Agent Platform — they solve a narrower problem, as the table in [Agent Platform vs. Everything Else](#agent-platform-vs-everything-else) above shows: both are OS-level and single-assistant, reaching only a user who already has that specific app installed.
+
+A business should adopt App Intents and AppFunctions for its native apps — they're the right tool for that job. Agent Platform exists for everything outside that: web-based agents, cross-platform assistants, and any AI system that hasn't been granted OS-level access to a specific installed app, which today is most of them. Where useful, an Agent Platform deployment can even describe its App Intents / AppFunctions surface alongside its web-facing skills, rather than treating them as separate integrations to maintain.
 
 ## FAQ
 
@@ -260,4 +278,4 @@ Apache 2.0 — the specification and all reference implementations are, and will
 
 ---
 
-*Agent Platform isn't a product of any single company. It's an attempt at a shared answer to one question: what does a business's front door look like when a growing share of its visitors are agents, not people?*
+_Agent Platform isn't a product of any single company. It's an attempt at a shared answer to one question: what does a business's front door look like when a growing share of its visitors are agents, not people?_
