@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contributing · Agent Platform</title>
+    <meta
+      name="description"
+      content="Agent Platform — the open standard for AI-native business applications."
+    />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="../">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Agent Platform</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="../">Spec</a>
+          <a href="../roadmap/">Roadmap</a>
+          <a href="../contributing/" aria-current="page">Contributing</a>
+          <a
+            class="nav-external"
+            href="https://github.com/WEBX-PL/agent-platform"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <article class="prose"><h1>Contributing to Agent Platform</h1>
+<p>Thanks for looking at this. The project is a v0.1 draft specification — early enough that a well-argued issue can still change the shape of the standard. This document explains how to contribute usefully at this stage.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#where-the-project-stands">Where the Project Stands</a></li>
+<li><a href="#ways-to-contribute">Ways to Contribute</a></li>
+<li><a href="#proposing-a-spec-change">Proposing a Spec Change</a></li>
+<li><a href="#contributing-code">Contributing Code</a></li>
+<li><a href="#style-guide">Style Guide</a></li>
+<li><a href="#commit-messages">Commit Messages</a></li>
+<li><a href="#pull-request-process">Pull Request Process</a></li>
+<li><a href="#reporting-issues">Reporting Issues</a></li>
+<li><a href="#communication">Communication</a></li>
+<li><a href="#code-of-conduct">Code of Conduct</a></li>
+</ul>
+<h2>Where the Project Stands</h2>
+<p>Per the <a href="../#roadmap">roadmap</a>, the specification itself is still open for comment — nothing below <code>v1.0</code> is stable. That means:</p>
+<ul>
+<li>Breaking changes to the spec are still possible, and are fine as long as they&#39;re discussed first</li>
+<li>There is no reference implementation to be backward-compatible with yet</li>
+<li>The most valuable contributions right now are usually <strong>arguments and edge cases</strong>, not code</li>
+</ul>
+<p>If you&#39;re not sure whether something is &quot;ready&quot; to build against, assume not, and open a discussion first.</p>
+<h2>Ways to Contribute</h2>
+<p>Roughly in order of what&#39;s most useful today:</p>
+<ol>
+<li><strong>Stress-test the spec</strong> — try to design an Agent Endpoint for a real business (yours, or a hypothetical one) using the current draft, and report where it breaks down</li>
+<li><strong>Argue with a design decision</strong> — Skills vs. Tools, the endpoint list, the auth model, anything — with a concrete scenario, not just a preference</li>
+<li><strong>Write reference examples</strong> — a filled-out <code>agent.company.com</code> manifest for a sample business (retail, SaaS, booking, etc.)</li>
+<li><strong>Build a piece of the reference implementation</strong> — Core Server, an SDK, the CLI, the Agent Simulator (see <a href="../#reference-implementation">Reference Implementation</a>)</li>
+<li><strong>Improve the docs</strong> — the README, this file, or inline spec comments</li>
+</ol>
+<h2>Proposing a Spec Change</h2>
+<p>Spec changes go through discussion before code, not after:</p>
+<ol>
+<li><strong>Open an issue</strong> describing the problem, not just the proposed fix. What breaks today, for what kind of business, in what scenario?</li>
+<li><strong>Propose a change</strong>, ideally with a before/after example of what an <code>agent.company.com</code> response looks like under the current spec vs. your proposal</li>
+<li><strong>Wait for discussion</strong> before implementing — this avoids two people independently building incompatible solutions to the same problem</li>
+<li>Once there&#39;s rough consensus, the spec section gets updated in a PR that links back to the issue</li>
+</ol>
+<p>Small clarifications (typos, ambiguous wording, missing examples) can skip straight to a PR.</p>
+<h2>Contributing Code</h2>
+<p>Since there&#39;s no reference implementation yet, &quot;contributing code&quot; mostly means <strong>starting</strong> a piece of one. Before you do:</p>
+<ul>
+<li>Check open issues and discussions for the same component, so two people don&#39;t build the same SDK in parallel</li>
+<li>Open an issue stating what you&#39;re building and your intended approach</li>
+<li>Prefer small, working slices (e.g. &quot;OpenAPI → skills discovery for the CLI&quot;) over one large PR implementing an entire component</li>
+</ul>
+<h2>Style Guide</h2>
+<ul>
+<li><strong>Markdown</strong>: one sentence per line is not required, but keep paragraphs short and use tables over prose where a table is clearer</li>
+<li><strong>Code</strong>: match the idioms of whatever language you&#39;re writing in (idiomatic Go, idiomatic TypeScript, etc.) rather than forcing one house style across languages</li>
+<li><strong>Spec language</strong>: use &quot;MUST&quot;, &quot;SHOULD&quot;, and &quot;MAY&quot; deliberately (as in RFC 2119) when defining requirements, so conformance is unambiguous</li>
+<li><strong>Examples</strong>: every new capability in the spec should ship with at least one worked example, the way the coffee shop example illustrates a skill call in the README</li>
+</ul>
+<h2>Commit Messages</h2>
+<p>Keep the first line short and in the imperative mood:</p>
+<pre><code>Add skills/tools distinction to endpoint spec
+Fix ambiguous auth example in README
+</code></pre>
+<p>Put the &quot;why,&quot; not just the &quot;what,&quot; in the body if the change isn&#39;t self-explanatory.</p>
+<h2>Pull Request Process</h2>
+<ol>
+<li>Fork the repo and branch from <code>main</code></li>
+<li>Keep the PR scoped to one change — spec edits and implementation code should generally be separate PRs</li>
+<li>Link the issue or discussion the PR resolves</li>
+<li>If the PR changes the spec, update any examples or diagrams elsewhere in the repo that would now be inconsistent</li>
+<li>A maintainer will review; for spec changes specifically, expect discussion before merge rather than a quick approval</li>
+</ol>
+<h2>Reporting Issues</h2>
+<p>A good issue includes:</p>
+<ul>
+<li>What you were trying to build or express</li>
+<li>What part of the spec didn&#39;t cover it, or covered it ambiguously</li>
+<li>A concrete example, if you have one</li>
+</ul>
+<p>&quot;This feels off&quot; is a fine way to start a discussion, but a maintainer will likely ask for a scenario before it turns into a spec change.</p>
+<h2>Communication</h2>
+<p>For now, everything routes through this repository:</p>
+<ul>
+<li><strong>Issues</strong> — bugs, spec gaps, concrete proposals</li>
+<li><strong>Discussions</strong> — open-ended questions, &quot;should we support X,&quot; early-stage ideas</li>
+</ul>
+<p>If a chat/community channel gets stood up, it&#39;ll be linked from the main <a href="../">README</a>.</p>
+<h2>Code of Conduct</h2>
+<p>Be direct about the work, kind to the person. Disagree with proposals, not with people. Assume good faith from other contributors, and extend the same to maintainers when a PR doesn&#39;t get merged right away — spec-first projects move slower than product code by design.</p>
+</article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>
+          Apache 2.0 ·
+          <a href="https://github.com/WEBX-PL/agent-platform"
+            >WEBX-PL/agent-platform</a
+          >
+        </p>
+        <p class="footer-note">
+          An open standard for the AI-native front door of a business.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "dark",
+        securityLevel: "loose",
+        fontFamily: "IBM Plex Sans, system-ui, sans-serif",
+      });
+    </script>
+  </body>
+</html>

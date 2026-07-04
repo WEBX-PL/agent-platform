@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Open Standard for AI-Native Business Applications · Agent Platform</title>
+    <meta
+      name="description"
+      content="Agent Platform — the open standard for AI-native business applications."
+    />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="./">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Agent Platform</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="./" aria-current="page">Spec</a>
+          <a href="./roadmap/">Roadmap</a>
+          <a href="./contributing/">Contributing</a>
+          <a
+            class="nav-external"
+            href="https://github.com/WEBX-PL/agent-platform"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <article class="prose"><h1>Agent Platform</h1>
+<p><strong>The Open Standard for AI-Native Business Applications</strong></p>
+<p><em>Specification v0.1 — Draft, open for community feedback</em></p>
+<p><a href="https://github.com/WEBX-PL/agent-platform/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License: Apache 2.0"></a>
+<img src="https://img.shields.io/badge/status-draft-orange.svg" alt="Status: Draft">
+<a href="#contributing"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a></p>
+<hr>
+<p><a href="https://agent-platform.tech">agent-platform.tech</a> introduce,</p>
+<p>For twenty years, software has been built around one assumption: a human is on the other end of the interface, clicking, tapping, scrolling. That assumption is breaking.</p>
+<p>People already tell their assistant <em>&quot;order my usual coffee&quot;</em> instead of opening an app. A business that can only be understood by crawling its HTML effectively doesn&#39;t exist for that assistant — and, increasingly, doesn&#39;t exist for the customer standing behind it either.</p>
+<p><strong>Agent Platform</strong> is an open, vendor-neutral standard for exposing a business&#39;s products, policies, and workflows in a form AI agents can act on directly. It isn&#39;t another API to integrate. It&#39;s the AI-native front door of the business itself.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#why-this-exists">Why This Exists</a></li>
+<li><a href="#the-vision">The Vision</a></li>
+<li><a href="#quick-start">Quick Start</a></li>
+<li><a href="#how-it-works">How It Works</a></li>
+<li><a href="#core-principles">Core Principles</a></li>
+<li><a href="#the-agent-endpoint">The Agent Endpoint</a></li>
+<li><a href="#skills-vs-tools">Skills vs. Tools</a></li>
+<li><a href="#example-a-coffee-shop-agent-native">Example: A Coffee Shop, Agent-Native</a></li>
+<li><a href="#agent-platform-vs-everything-else">Agent Platform vs. Everything Else</a></li>
+<li><a href="#why-not-just-mcp">Why Not Just MCP?</a></li>
+<li><a href="#what-about-apple-and-google">What About Apple and Google?</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#reference-implementation">Reference Implementation</a></li>
+<li><a href="#roadmap">Roadmap</a></li>
+<li><a href="#business-model-and-strategy">Business Model and Strategy</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2>Why This Exists</h2>
+<p>Every business today speaks a few dialects:</p>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Built for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Website</td>
+<td>Humans with a mouse</td>
+</tr>
+<tr>
+<td>Mobile app</td>
+<td>Humans with a thumb</td>
+</tr>
+<tr>
+<td>REST / GraphQL API</td>
+<td>Developers writing integrations</td>
+</tr>
+</tbody></table>
+<p>None of them were built for a fourth consumer that has shown up in the last two years: an autonomous AI agent, acting on a person&#39;s behalf.</p>
+<p>Lacking a real interface, agents today fall back on:</p>
+<ul>
+<li>Crawling HTML that was never meant to be machine-read</li>
+<li>Driving a browser the way a human would</li>
+<li>Reverse-engineering undocumented endpoints</li>
+<li>Screenshotting the screen and guessing with vision models</li>
+</ul>
+<p>All of this is slow, brittle, and breaks the moment a page is redesigned. It&#39;s also unfair to the business itself, which has no reliable way to guarantee the agent sees its pricing, promotions, and policies the way it actually intends them to be seen.</p>
+<h2>The Vision</h2>
+<p>Every company should expose an <strong>Agent Endpoint</strong>, the same way it exposes a website today:</p>
+<pre><code>api.company.com   → for developers
+agent.company.com → for AI agents
+</code></pre>
+<p>This single endpoint becomes the authoritative channel between a business and any AI system acting on its behalf — covering catalog, pricing, policy, checkout, and tracking, all in a form built to be <em>reasoned about</em>, not <em>rendered</em>.</p>
+<p>This is deliberately not &quot;another MCP.&quot; MCP standardizes how a model calls a tool. <strong>Agent Platform standardizes how a business presents itself</strong> — the knowledge, workflows, and commerce logic sitting behind those tools. Think of it less as an API spec and more as an <strong>AI runtime for the business itself</strong>.</p>
+<h2>Quick Start</h2>
+<p>The reference implementation is designed to feel like scaffolding a modern web app, not integrating a spec by hand:</p>
+<pre><code class="language-bash">npx create-agent-platform
+</code></pre>
+<p>Out of the box, this is designed to:</p>
+<ul>
+<li>Scan your existing REST / OpenAPI endpoints and auto-generate agent-callable tools from them</li>
+<li>Stand up <code>agent.company.com</code> with documentation written for agents, not humans</li>
+<li>Expose the same capabilities over MCP, A2A (Agent2Agent), and other supported protocols at once</li>
+<li>Validate your deployment against the Agent Platform specification</li>
+<li>Simulate conversations against your endpoint, from the perspective of major assistants</li>
+<li>Report on how AI agents actually use your business — what they ask, what they buy, where they drop off</li>
+<li>Run regression tests so an agent-facing workflow that works today still works after your next deploy</li>
+<li>Handle conversation memory, response caching, and streaming for you</li>
+<li>Let you add custom <strong>skills</strong> as plugins, without touching the runtime itself</li>
+</ul>
+<blockquote>
+<p>🚧 This is the target developer experience for the reference implementation, not a finished product yet — see <a href="#roadmap">Roadmap</a>.</p>
+</blockquote>
+<h2>How It Works</h2>
+<pre class="mermaid">flowchart LR
+    A[Customer] --&gt; B[AI Assistant]
+    B --&gt; C[Agent Platform]
+    C --&gt; D[Business API]
+    D --&gt; E[Internal Services]</pre>
+<p>Agent Platform sits as an intelligent adapter between the assistant a customer already uses and the systems a business already runs. It doesn&#39;t replace your backend — it gives it a voice AI agents can understand natively.</p>
+<p>Compare that to the traditional path:</p>
+<pre class="mermaid">flowchart LR
+    A2[Customer] --&gt; B2[Mobile App]
+    B2 --&gt; C2[REST API]
+    C2 --&gt; D2[Business Logic]</pre>
+<p>Same business logic underneath. A completely different front door.</p>
+<h2>Core Principles</h2>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>What It Means</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Open</strong></td>
+<td>Apache 2.0. No vendor lock-in, no proprietary extensions.</td>
+</tr>
+<tr>
+<td><strong>AI-First</strong></td>
+<td>Designed for autonomous reasoning, not screens.</td>
+</tr>
+<tr>
+<td><strong>Human-Independent</strong></td>
+<td>Fully functional with no UI in the loop.</td>
+</tr>
+<tr>
+<td><strong>Discoverable</strong></td>
+<td>An agent finds what it can do without a human reading docs first.</td>
+</tr>
+<tr>
+<td><strong>Self-Describing</strong></td>
+<td>Every deployment explains its own capabilities, live.</td>
+</tr>
+</tbody></table>
+<h2>The Agent Endpoint</h2>
+<p>A conforming deployment exposes a predictable, agent-readable surface:</p>
+<pre><code>agent.company.com/
+├── about              — who the business is
+├── products           — catalog
+├── pricing            — current prices &amp; promotions
+├── policies           — returns, shipping, terms
+├── examples           — sample interactions
+├── skills             — high-level actions the agent can take
+├── tools              — the implementation behind each skill
+├── promotions         — active offers
+├── recommendations    — cross-sell / up-sell logic
+├── orders             — order lifecycle
+├── checkout           — commerce flow
+├── tracking           — fulfillment status
+├── authentication     — how an agent proves who it&#39;s acting for
+├── events             — webhooks / subscriptions
+├── mcp                — MCP server(s), if exposed
+├── openapi            — OpenAPI spec, if exposed
+└── docs               — human-readable fallback docs
+</code></pre>
+<p>An agent should never need to open a webpage to understand what a business can do for it.</p>
+<h2>Skills vs. Tools</h2>
+<p>This distinction is the core of the spec:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Skills</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Describe</td>
+<td><strong>Intent</strong> — what can be done</td>
+<td><strong>Implementation</strong> — how it&#39;s done</td>
+</tr>
+<tr>
+<td>Audience</td>
+<td>The agent&#39;s planning layer</td>
+<td>The agent&#39;s execution layer</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td><em>Search Products, Place Order, Track Shipment, Request Refund, Book Appointment</em></td>
+<td>The function signatures, endpoints, or MCP calls behind each skill</td>
+</tr>
+<tr>
+<td>Changes when</td>
+<td>The business&#39;s offering changes</td>
+<td>The backend implementation changes</td>
+</tr>
+</tbody></table>
+<p>Separating the two means a business can rebuild its entire backend without breaking a single agent integration — as long as the skills stay the same.</p>
+<h2>Example: A Coffee Shop, Agent-Native</h2>
+<p><strong>Agent asks:</strong></p>
+<blockquote>
+<p>Find premium espresso beans below €40.</p>
+</blockquote>
+<p><strong>Agent Platform responds:</strong></p>
+<pre><code class="language-json">{
+  &quot;product_id&quot;: &quot;123&quot;,
+  &quot;price&quot;: &quot;€29&quot;,
+  &quot;promotion&quot;: &quot;Buy two, get 5% off&quot;,
+  &quot;recommended_add_ons&quot;: [
+    &quot;Paper filters&quot;,
+    &quot;Coffee grinder&quot;,
+    &quot;Reusable container&quot;
+  ],
+  &quot;estimated_delivery&quot;: &quot;Tomorrow&quot;
+}
+</code></pre>
+<p><strong>Agent continues, in the same breath:</strong></p>
+<blockquote>
+<p>Create order.</p>
+</blockquote>
+<p>No webpage opened. No form filled in. No screenshot taken.</p>
+<h2>Agent Platform vs. Everything Else</h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th align="center">REST API</th>
+<th align="center">GraphQL</th>
+<th align="center">MCP alone</th>
+<th align="center">App Intents</th>
+<th align="center">AppFunctions</th>
+<th align="center">Agent Platform</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Machine-callable</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Self-describing to an agent</td>
+<td align="center">⚠️ needs docs</td>
+<td align="center">⚠️ schema only</td>
+<td align="center">✅ tools only</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅ business + tools</td>
+</tr>
+<tr>
+<td>Encodes policy &amp; promotions</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Encodes commerce workflow</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">⚠️ per-action only</td>
+<td align="center">⚠️ per-action only</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Standardized discovery</td>
+<td align="center">❌</td>
+<td align="center">⚠️</td>
+<td align="center">✅</td>
+<td align="center">✅ (OS-level)</td>
+<td align="center">✅ (OS-level)</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Protocol-agnostic (MCP, A2A, OpenAPI…)</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">❌</td>
+<td align="center">❌ Apple-only</td>
+<td align="center">❌ Android-only</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Reaches agents outside the installed app</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✅</td>
+</tr>
+</tbody></table>
+<h2>Why Not Just MCP?</h2>
+<p>MCP standardizes <strong>how a model calls a tool</strong>.
+Agent Platform standardizes <strong>how a business presents itself</strong>, to any agent, over any protocol.</p>
+<p>They complement each other rather than compete: a single Agent Platform deployment can expose one or several MCP servers as part of its <code>tools</code> surface, alongside OpenAPI, A2A, or protocols that don&#39;t exist yet.</p>
+<h2>What About Apple and Google?</h2>
+<p>Both major mobile platforms are already moving in this direction — just inside their own walls.</p>
+<p><strong>Apple — App Intents (Siri / Apple Intelligence).</strong> Apple&#39;s <a href="https://developer.apple.com/documentation/appintents/adopting-app-intents-to-support-system-experiences">App Intents framework</a> lets an iOS app declare its actions and data as typed intents and entities, so Siri, Spotlight, Shortcuts, and Apple Intelligence can discover and call them directly, without opening the app.</p>
+<p><strong>Android — AppFunctions (Gemini).</strong> Google&#39;s equivalent is <a href="https://developer.android.com/ai/appfunctions">AppFunctions</a>, a platform framework (Android 16+) plus Jetpack library that lets an app register callable functions with an OS-level registry so agents and assistants — Gemini in particular — can discover and execute them. Google describes it as <em>the mobile equivalent of tools within MCP</em>.</p>
+<p>Neither replaces the need for Agent Platform — they solve a narrower problem, as the table in <a href="#agent-platform-vs-everything-else">Agent Platform vs. Everything Else</a> above shows: both are OS-level and single-assistant, reaching only a user who already has that specific app installed.</p>
+<p>A business should adopt App Intents and AppFunctions for its native apps — they&#39;re the right tool for that job. Agent Platform exists for everything outside that: web-based agents, cross-platform assistants, and any AI system that hasn&#39;t been granted OS-level access to a specific installed app, which today is most of them. Where useful, an Agent Platform deployment can even describe its App Intents / AppFunctions surface alongside its web-facing skills, rather than treating them as separate integrations to maintain.</p>
+<h2>FAQ</h2>
+<p><strong>Does this replace my existing API?</strong>
+No. Agent Platform sits in front of it. Skills map to the business logic you already have — you&#39;re not rewriting your backend.</p>
+<p><strong>Is this affiliated with any AI company?</strong>
+No. Agent Platform is an independent, vendor-neutral specification, designed to work with any assistant the way HTML works with any browser.</p>
+<p><strong>Do I have to support every protocol — MCP, A2A, OpenAPI — to conform?</strong>
+No. The spec is modular. Expose whichever protocols fit your stack; Agent Platform describes how they fit together, not which ones you&#39;re required to use.</p>
+<p><strong>Is this production-ready?</strong>
+Not yet. This is a v0.1 draft specification. See <a href="#roadmap">Roadmap</a>.</p>
+<h2>Reference Implementation</h2>
+<p>The project intends to ship, fully open source:</p>
+<ul>
+<li>Core Server</li>
+<li>SDKs — TypeScript, Go, Python, Rust</li>
+<li>Validation CLI</li>
+<li>Testing framework for agent-facing workflows</li>
+<li>Agent Simulator, for testing against multiple assistant personas</li>
+<li>Documentation Generator</li>
+<li>Capability Inspector</li>
+</ul>
+<h2>Roadmap</h2>
+<ul>
+<li><strong>v0.1</strong> — Publish the specification (this document) for community feedback</li>
+<li><strong>v0.2</strong> — Core Server reference implementation + TypeScript SDK</li>
+<li><strong>v0.3</strong> — <code>create-agent-platform</code> CLI: OpenAPI auto-discovery, MCP/A2A auto-exposure</li>
+<li><strong>v0.4</strong> — Agent Simulator + conformance test suite</li>
+<li><strong>v1.0</strong> — Stable spec, multi-language SDKs, certification program</li>
+</ul>
+<p>See <a href="roadmap/">ROADMAP.md</a> for exit criteria per milestone, status tracking, and explicit non-goals.</p>
+<h2>Business Model and Strategy</h2>
+<p>Kubernetes, Terraform, GraphQL, and MCP itself all followed the same arc: a manifesto and a specification came first, adoption followed, and a business grew out of support, hosting, and tooling only after that. Agent Platform is deliberately following that path rather than starting from a pitch deck.</p>
+<p>The protocol itself stays free, forever — no feature sits behind a commercial license. If a business grows around it, it will come from optional services layered on top, not from the standard:</p>
+<p>Managed cloud hosting · Enterprise support · Compliance &amp; security audits · High availability · Monitoring &amp; observability · Managed authentication · Developer training · Certification · Consulting</p>
+<h2>Contributing</h2>
+<p>This is early-stage, and shaped by whoever shows up first. See <a href="contributing/">CONTRIBUTING.md</a> for how to propose spec changes, contribute code, and the PR process.</p>
+<h2>License</h2>
+<p>Apache 2.0 — the specification and all reference implementations are, and will remain, fully open source.</p>
+<hr>
+<p><em>Agent Platform isn&#39;t a product of any single company. It&#39;s an attempt at a shared answer to one question: what does a business&#39;s front door look like when a growing share of its visitors are agents, not people?</em></p>
+</article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>
+          Apache 2.0 ·
+          <a href="https://github.com/WEBX-PL/agent-platform"
+            >WEBX-PL/agent-platform</a
+          >
+        </p>
+        <p class="footer-note">
+          An open standard for the AI-native front door of a business.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "dark",
+        securityLevel: "loose",
+        fontFamily: "IBM Plex Sans, system-ui, sans-serif",
+      });
+    </script>
+  </body>
+</html>

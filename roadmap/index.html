@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roadmap · Agent Platform</title>
+    <meta
+      name="description"
+      content="Agent Platform — the open standard for AI-native business applications."
+    />
+    <meta name="theme-color" content="#0b1020" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="../">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">Agent Platform</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="../">Spec</a>
+          <a href="../roadmap/" aria-current="page">Roadmap</a>
+          <a href="../contributing/">Contributing</a>
+          <a
+            class="nav-external"
+            href="https://github.com/WEBX-PL/agent-platform"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <article class="prose"><h1>Roadmap</h1>
+<p>This is the working plan for Agent Platform, from the current draft specification to a stable v1.0. Milestones are sequenced, not scheduled — there are no target dates yet, because the pace depends on who shows up (see <a href="../contributing/">CONTRIBUTING.md</a>).</p>
+<p>Status legend: 🟢 done · 🟡 in progress · ⚪ not started</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#v01--specification-draft">v0.1 — Specification Draft</a></li>
+<li><a href="#v02--core-server--typescript-sdk">v0.2 — Core Server &amp; TypeScript SDK</a></li>
+<li><a href="#v03--cli--auto-discovery">v0.3 — CLI &amp; Auto-Discovery</a></li>
+<li><a href="#v04--simulation--conformance">v0.4 — Simulation &amp; Conformance</a></li>
+<li><a href="#v05--multi-language-sdks">v0.5 — Multi-Language SDKs</a></li>
+<li><a href="#v10--stable-spec">v1.0 — Stable Spec</a></li>
+<li><a href="#post-10--exploratory">Post-1.0 / Exploratory</a></li>
+<li><a href="#explicit-non-goals">Explicit Non-Goals</a></li>
+<li><a href="#how-this-roadmap-changes">How This Roadmap Changes</a></li>
+</ul>
+<h2>v0.1 — Specification Draft</h2>
+<p><strong>Status: 🟡 in progress</strong></p>
+<p>Publish the specification and get it in front of enough real use cases to find its rough edges before anything is built against it.</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Draft the core spec: Agent Endpoint, Skills vs. Tools, core principles</li>
+<li><input checked="" disabled="" type="checkbox"> Publish README, CONTRIBUTING, and this roadmap</li>
+<li><input disabled="" type="checkbox"> Collect at least 3–5 worked examples from different business types (retail, SaaS, booking, marketplace)</li>
+<li><input disabled="" type="checkbox"> Resolve open questions on the authentication model</li>
+<li><input disabled="" type="checkbox"> Resolve open questions on how skills should be versioned independently of tools</li>
+</ul>
+<p><strong>Exit criteria:</strong> rough consensus on the shape of the Agent Endpoint and the Skills/Tools split, from more than one contributor.</p>
+<h2>v0.2 — Core Server &amp; TypeScript SDK</h2>
+<p><strong>Status: ⚪ not started</strong></p>
+<p>The first thing anyone can actually run.</p>
+<ul>
+<li><input disabled="" type="checkbox"> Core Server: serves a conforming <code>agent.company.com</code> from a config file</li>
+<li><input disabled="" type="checkbox"> TypeScript SDK for defining skills and tools in code</li>
+<li><input disabled="" type="checkbox"> Minimal <code>docs</code> and <code>about</code> endpoints generated automatically</li>
+<li><input disabled="" type="checkbox"> One reference deployment (the coffee shop example from the README, made real)</li>
+</ul>
+<p><strong>Exit criteria:</strong> a developer can clone the repo, define a handful of skills, and get a working Agent Endpoint locally.</p>
+<h2>v0.3 — CLI &amp; Auto-Discovery</h2>
+<p><strong>Status: ⚪ not started</strong></p>
+<p>Lowering the cost of adopting the spec for a business with an existing API.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>npx create-agent-platform</code> scaffolding command</li>
+<li><input disabled="" type="checkbox"> OpenAPI → skills/tools auto-generation</li>
+<li><input disabled="" type="checkbox"> Automatic exposure over MCP</li>
+<li><input disabled="" type="checkbox"> Automatic exposure over A2A</li>
+<li><input disabled="" type="checkbox"> Spec-compliance validation command</li>
+</ul>
+<p><strong>Exit criteria:</strong> a business with an existing OpenAPI-documented REST API can get a passable Agent Endpoint without hand-writing skills.</p>
+<h2>v0.4 — Simulation &amp; Conformance</h2>
+<p><strong>Status: ⚪ not started</strong></p>
+<p>Making sure deployments actually work the way they claim to, before and after changes.</p>
+<ul>
+<li><input disabled="" type="checkbox"> Agent Simulator: test a deployment from the perspective of different assistant personas</li>
+<li><input disabled="" type="checkbox"> Regression/conformance test suite, runnable in CI</li>
+<li><input disabled="" type="checkbox"> Analytics hooks: what agents are asking, where they drop off</li>
+<li><input disabled="" type="checkbox"> Capability Inspector: human-readable view of what a given endpoint exposes</li>
+</ul>
+<p><strong>Exit criteria:</strong> a deployment can be tested and regression-tested without a human manually poking it with a real assistant.</p>
+<h2>v0.5 — Multi-Language SDKs</h2>
+<p><strong>Status: ⚪ not started</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Go SDK</li>
+<li><input disabled="" type="checkbox"> Python SDK</li>
+<li><input disabled="" type="checkbox"> Rust SDK</li>
+<li><input disabled="" type="checkbox"> Parity test suite across SDKs, so a Skill defined in any language produces an identical Agent Endpoint response</li>
+</ul>
+<p><strong>Exit criteria:</strong> the spec is demonstrably language-agnostic, not just TypeScript-shaped.</p>
+<h2>v1.0 — Stable Spec</h2>
+<p><strong>Status: ⚪ not started</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Spec frozen, with a defined process for future breaking changes (versioned endpoints, deprecation windows)</li>
+<li><input disabled="" type="checkbox"> All v0.x open questions resolved or explicitly deferred</li>
+<li><input disabled="" type="checkbox"> Certification program defined: what &quot;conforms to Agent Platform v1.0&quot; actually means, and how it&#39;s checked</li>
+<li><input disabled="" type="checkbox"> At least a handful of independent, non-reference implementations exist</li>
+</ul>
+<p><strong>Exit criteria:</strong> a business can adopt the spec with confidence that <code>agent.company.com</code> won&#39;t need to be rebuilt for v1.1.</p>
+<h2>Post-1.0 / Exploratory</h2>
+<p>Ideas that are plausible but out of scope until the core is stable:</p>
+<ul>
+<li>Hosted / managed Agent Platform offering</li>
+<li>A public directory of conforming Agent Endpoints</li>
+<li>Formal certification badges</li>
+<li>Protocol adapters beyond MCP/A2A/OpenAPI, as new agent protocols emerge</li>
+</ul>
+<h2>Explicit Non-Goals</h2>
+<p>To keep scope honest:</p>
+<ul>
+<li><strong>Not a replacement for your backend</strong> — Agent Platform is a front door, not a rewrite of business logic</li>
+<li><strong>Not tied to any single AI vendor or assistant</strong> — see the <a href="../#faq">FAQ</a></li>
+<li><strong>Not a hosted product (yet)</strong> — the spec and reference implementations come first; see <a href="../#business-model-and-strategy">Business Model and Strategy</a></li>
+</ul>
+<h2>How This Roadmap Changes</h2>
+<p>This file moves when the underlying work moves, not on a schedule. If you&#39;re picking up a <code>[ ]</code> item, open an issue first (see <a href="../contributing/">CONTRIBUTING.md</a>) so it can be marked in progress and two people don&#39;t build it twice.</p>
+</article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <p>
+          Apache 2.0 ·
+          <a href="https://github.com/WEBX-PL/agent-platform"
+            >WEBX-PL/agent-platform</a
+          >
+        </p>
+        <p class="footer-note">
+          An open standard for the AI-native front door of a business.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: "dark",
+        securityLevel: "loose",
+        fontFamily: "IBM Plex Sans, system-ui, sans-serif",
+      });
+    </script>
+  </body>
+</html>
